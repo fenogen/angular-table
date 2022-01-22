@@ -73,16 +73,9 @@
   }
 </style>
 
-<h2>Products1111111111111111</h2>
-<!-- <div *ngFor="let item of products">
+<h2>Номенклатура лікарських засобів</h2>
 
-  <h3>
-    {{ item.name }}
-  </h3>
-
-</div> -->
-
-<p-table [value]="items">
+<!-- <p-table [value]="items">
   <ng-template pTemplate="header">
     <tr>
       <th>№ позиції номенклатури</th>
@@ -101,33 +94,38 @@
       <td>{{ item.release_form }}</td>
       <td>{{ item.dosage }}</td>
       <td>{{ item.unit}}</td>
-      <!-- <td>{{product.code}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.category}}</td>
-      <td>{{product.quantity}}</td> -->
     </tr>
   </ng-template>
-</p-table>
+</p-table> -->
 
-<!-- <div class="card">
+<div class="card">
     <h5>Session Storage</h5>
-    <p-table #dt1 [value]={{product}} selectionMode="single" [(selection)]="selectedCustomer1" dataKey="id" styleClass="p-datatable-customers"
-        [rows]="3" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
+    <!-- [(selection)]="selecteditem" -->
+    <p-table #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
+        [rows]="5" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="name">Ідентифікатор МНН<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="num">№ позиції номенклатури<p-sortIcon field="num"></p-sortIcon></th>
+                <th pSortableColumn="item.mnn_id">Ідентифікатор МНН<p-sortIcon field="item.mnn_id"></p-sortIcon>
+                </th>
+                <th pSortableColumn="name">МНН<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="item.release_form ">Форма випуску<p-sortIcon field="item.release_form "></p-sortIcon></th>
+                <th pSortableColumn="item.dosage ">Дозування<p-sortIcon field="item.dosage "></p-sortIcon></th>
+                <th pSortableColumn="item.unit">Одиниці виміру<p-sortIcon field="item.unit"></p-sortIcon></th>
+                <!-- <th pSortableColumn="name">Ідентифікатор МНН<p-sortIcon field="name"></p-sortIcon>
+                </th>
                 <th pSortableColumn="country.name">Піднапрям<p-sortIcon field="country.name"></p-sortIcon></th>
                 <th pSortableColumn="representative.name">№ позиції номенклатури<p-sortIcon field="representative.name"></p-sortIcon></th>
                 <th pSortableColumn="status">МНН<p-sortIcon field="status"></p-sortIcon></th>
                 <th pSortableColumn="status">Форма випуску<p-sortIcon field="status"></p-sortIcon></th>
                 <th pSortableColumn="status">Дозування<p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="status">Одиниці виміру<p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="status">Одиниці виміру<p-sortIcon field="status"></p-sortIcon></th> -->
             </tr>
             <tr>
-                <th>
+                <!-- <th>
                     <input pInputText type="text" (input)="dt1.filter($event.target.value, 'name', 'contains')" [value]="dt1.filters['name']?.value" placeholder="Search by Name" class="p-column-filter">
-                </th>
-                <th>
+                </th> -->
+                <!-- <th>
                     <input pInputText type="text" (input)="dt1.filter($event.target.value, 'country.name', 'contains')" [value]="dt1.filters['country.name']?.value" placeholder="Search by Country" class="p-column-filter">
                 </th>
                 <th>
@@ -135,27 +133,39 @@
                 </th>
                 <th>
                     <input pInputText type="text" (input)="dt1.filter($event.target.value, 'status', 'contains')" [value]="dt1.filters['status']?.value" placeholder="Search by Status" class="p-column-filter">
-                </th>
+                </th> -->
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-          <tr [pSelectableRow]="products">
+        <ng-template pTemplate="body" let-item>
+          <tr [pSelectableRow]="items">
             <td>
               <span class="p-column-title">Name</span>
-              {{products.name}}
+              {{item.num}}
             </td>
             <td>
               <span class="p-column-title">Country</span>
-              <span class="image-text">{{products.name}}</span>
+              <span class="image-text">{{item.mnn_id}}</span>
             </td>
             <td>
               <span class="p-column-title">Representative</span>
-              <span class="image-text">{{products.name}}</span>
+              <span class="image-text">{{item.name}}</span>
             </td>
             <td>
-              <span class="p-column-title">Status</span>
-              <span [class]="'customer-badge status-' + customer.status">{{products.name}}</span>
+            <span class="p-column-title">Representative</span>
+            <span class="image-text">{{item.release_form}}</span>
             </td>
+            <td>
+              <span class="p-column-title">Representative</span>
+              <span class="image-text">{{item.dosage}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Representative</span>
+              <span class="image-text">{{item.unit}}</span>
+            </td>
+            <!-- <td>
+              <span class="p-column-title">Status</span>
+              <span [class]="'customer-badge status-' + customer.status">{{item.name}}</span>
+            </td> -->
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
@@ -164,4 +174,4 @@
           </tr>
         </ng-template>
         </p-table>
-        </div> -->
+        </div>

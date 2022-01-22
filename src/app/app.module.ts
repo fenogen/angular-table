@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 // import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling'
 // import {FormsModule} from '@angular/forms';
 // import {ScrollPanelModule} from 'primeng/scrollpanel';
-import { ItemService } from './customerservice';
 
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
