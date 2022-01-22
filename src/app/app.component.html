@@ -89,9 +89,8 @@
 
 <div class="card">
     <h2>Номенклатура лікарських засобів</h2>
-    <!-- [(selection)]="selecteditem" -->
     <p-table #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
-        [rows]="5" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
+        [rows]="3" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="num">№ позиції номенклатури<p-sortIcon field="num"></p-sortIcon></th>
