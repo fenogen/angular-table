@@ -9,7 +9,9 @@
 
 <style>
   :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     font-size: 14px;
     color: #333;
     box-sizing: border-box;
@@ -29,7 +31,7 @@
   p {
     margin: 0;
   }
-  
+
   a,
   a:visited,
   a:hover {
@@ -43,7 +45,7 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
+    .card-container > *:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -71,14 +73,95 @@
   }
 </style>
 
-
 <h2>Products1111111111111111</h2>
-<div *ngFor="let product of products">
+<!-- <div *ngFor="let item of products">
 
   <h3>
-    {{ product.name }}
+    {{ item.name }}
   </h3>
 
-</div>
+</div> -->
 
+<p-table [value]="items">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>№ позиції номенклатури</th>
+      <th>Ідентифікатор МНН</th>
+      <th>МНН</th>
+      <th>Форма випуску</th>
+      <th>Дозування</th>
+      <th>Одиниці виміру</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.num }}</td>
+      <td>{{ item.mnn_id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.release_form }}</td>
+      <td>{{ item.dosage }}</td>
+      <td>{{ item.unit}}</td>
+      <!-- <td>{{product.code}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.category}}</td>
+      <td>{{product.quantity}}</td> -->
+    </tr>
+  </ng-template>
+</p-table>
 
+<!-- <div class="card">
+    <h5>Session Storage</h5>
+    <p-table #dt1 [value]={{product}} selectionMode="single" [(selection)]="selectedCustomer1" dataKey="id" styleClass="p-datatable-customers"
+        [rows]="3" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="name">Ідентифікатор МНН<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="country.name">Піднапрям<p-sortIcon field="country.name"></p-sortIcon></th>
+                <th pSortableColumn="representative.name">№ позиції номенклатури<p-sortIcon field="representative.name"></p-sortIcon></th>
+                <th pSortableColumn="status">МНН<p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="status">Форма випуску<p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="status">Дозування<p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="status">Одиниці виміру<p-sortIcon field="status"></p-sortIcon></th>
+            </tr>
+            <tr>
+                <th>
+                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'name', 'contains')" [value]="dt1.filters['name']?.value" placeholder="Search by Name" class="p-column-filter">
+                </th>
+                <th>
+                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'country.name', 'contains')" [value]="dt1.filters['country.name']?.value" placeholder="Search by Country" class="p-column-filter">
+                </th>
+                <th>
+                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'representative.name', 'contains')" [value]="dt1.filters['representative.name']?.value" placeholder="Search by Representative" class="p-column-filter">
+                </th>
+                <th>
+                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'status', 'contains')" [value]="dt1.filters['status']?.value" placeholder="Search by Status" class="p-column-filter">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+          <tr [pSelectableRow]="products">
+            <td>
+              <span class="p-column-title">Name</span>
+              {{products.name}}
+            </td>
+            <td>
+              <span class="p-column-title">Country</span>
+              <span class="image-text">{{products.name}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Representative</span>
+              <span class="image-text">{{products.name}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Status</span>
+              <span [class]="'customer-badge status-' + customer.status">{{products.name}}</span>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">No customers found.</td>
+          </tr>
+        </ng-template>
+        </p-table>
+        </div> -->
