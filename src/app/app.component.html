@@ -91,6 +91,12 @@
     <h2>Номенклатура лікарських засобів</h2>
     <p-table #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
         [rows]="3" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"
+          pTooltip="XLS" tooltipPosition="bottom"></button>
+      </div>
+    </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="num">№ позиції номенклатури<p-sortIcon field="num"></p-sortIcon></th>
