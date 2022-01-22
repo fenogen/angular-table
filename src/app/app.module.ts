@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 
 
 // Added
-// import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling'
-// import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import {TableModule} from 'primeng/table';
@@ -39,8 +39,8 @@ import {InputTextModule} from 'primeng/inputtext';
     ProgressBarModule,
     InputTextModule,
     // ScrollPanelModule,
-    // FormsModule
-    // ItemService
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

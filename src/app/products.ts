@@ -1,11 +1,11 @@
 export interface Product {
-    mnn_id: number;
-    subtype: string;
-    num: number;
-    name: string;
-    release_form: string;
-    dosage: string;
-    unit: string;
+    mnn_id?: number;
+    subtype?: string;
+    num?: number;
+    name?: string;
+    release_form?: string;
+    dosage?: string;
+    unit?: string;
 }
 
 

@@ -1,13 +1,4 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
+<!-- <style>
   :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -71,9 +62,7 @@
       visibility: hidden;
     }
   }
-</style>
-
-<h2>Номенклатура лікарських засобів</h2>
+</style> -->
 
 <!-- <p-table [value]="items">
   <ng-template pTemplate="header">
@@ -99,73 +88,73 @@
 </p-table> -->
 
 <div class="card">
-    <h5>Session Storage</h5>
+    <h2>Номенклатура лікарських засобів</h2>
     <!-- [(selection)]="selecteditem" -->
     <p-table #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
         [rows]="5" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="num">№ позиції номенклатури<p-sortIcon field="num"></p-sortIcon></th>
-                <th pSortableColumn="item.mnn_id">Ідентифікатор МНН<p-sortIcon field="item.mnn_id"></p-sortIcon>
+                <th pSortableColumn="mnn_id">Ідентифікатор МНН<p-sortIcon field="mnn_id"></p-sortIcon>
                 </th>
                 <th pSortableColumn="name">МНН<p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="item.release_form ">Форма випуску<p-sortIcon field="item.release_form "></p-sortIcon></th>
-                <th pSortableColumn="item.dosage ">Дозування<p-sortIcon field="item.dosage "></p-sortIcon></th>
-                <th pSortableColumn="item.unit">Одиниці виміру<p-sortIcon field="item.unit"></p-sortIcon></th>
-                <!-- <th pSortableColumn="name">Ідентифікатор МНН<p-sortIcon field="name"></p-sortIcon>
-                </th>
-                <th pSortableColumn="country.name">Піднапрям<p-sortIcon field="country.name"></p-sortIcon></th>
-                <th pSortableColumn="representative.name">№ позиції номенклатури<p-sortIcon field="representative.name"></p-sortIcon></th>
-                <th pSortableColumn="status">МНН<p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="status">Форма випуску<p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="status">Дозування<p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="status">Одиниці виміру<p-sortIcon field="status"></p-sortIcon></th> -->
+                <th pSortableColumn="release_form">Форма випуску<p-sortIcon field="release_form"></p-sortIcon></th>
+                <th pSortableColumn="dosage">Дозування<p-sortIcon field="dosage"></p-sortIcon></th>
+                <th pSortableColumn="unit">Одиниці виміру<p-sortIcon field="unit"></p-sortIcon></th>
             </tr>
             <tr>
-                <!-- <th>
-                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'name', 'contains')" [value]="dt1.filters['name']?.value" placeholder="Search by Name" class="p-column-filter">
-                </th> -->
-                <!-- <th>
-                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'country.name', 'contains')" [value]="dt1.filters['country.name']?.value" placeholder="Search by Country" class="p-column-filter">
+                <th>
+                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'num', 'contains')"
+                    [value]="$any(dt1.filters['num'])?.value" placeholder="Пошук за номенклатурою" class="p-column-filter">
                 </th>
                 <th>
-                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'representative.name', 'contains')" [value]="dt1.filters['representative.name']?.value" placeholder="Search by Representative" class="p-column-filter">
+                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'mnn_id', 'contains')"
+                    [value]="$any(dt1.filters['mnn_id'])?.value" placeholder="Пошук за ідентифікатором" class="p-column-filter">
                 </th>
                 <th>
-                    <input pInputText type="text" (input)="dt1.filter($event.target.value, 'status', 'contains')" [value]="dt1.filters['status']?.value" placeholder="Search by Status" class="p-column-filter">
-                </th> -->
+                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'name', 'contains')"
+                    [value]="$any(dt1.filters['name'])?.value" placeholder="Пошук за МНН" class="p-column-filter">
+                </th>
+                <th>
+                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'release_form', 'contains')"
+                    [value]="$any(dt1.filters['release_form'])?.value" placeholder="Пошук за формою випуска" class="p-column-filter">
+                </th>
+                <th>
+                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'dosage', 'contains')"
+                    [value]="$any(dt1.filters['dosage'])?.value" placeholder="Пошук за дозуванням" class="p-column-filter">
+                </th>
+                <th>
+                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'unit', 'contains')"
+                    [value]="$any(dt1.filters['unit'])?.value" placeholder="Пошук за од.виміру" class="p-column-filter">
+                  </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
-          <tr [pSelectableRow]="items">
+          <tr [pSelectableRow]="item">
             <td>
-              <span class="p-column-title">Name</span>
+              <span class="p-column-title">Num</span>
               {{item.num}}
             </td>
             <td>
-              <span class="p-column-title">Country</span>
-              <span class="image-text">{{item.mnn_id}}</span>
+              <span class="p-column-title">Id</span>
+              {{item.mnn_id}}
             </td>
             <td>
-              <span class="p-column-title">Representative</span>
-              <span class="image-text">{{item.name}}</span>
+              <span class="p-column-title">Name</span>
+             {{item.name}}
             </td>
             <td>
-            <span class="p-column-title">Representative</span>
-            <span class="image-text">{{item.release_form}}</span>
+            <span class="p-column-title">Form</span>
+            {{item.release_form}}
             </td>
             <td>
-              <span class="p-column-title">Representative</span>
-              <span class="image-text">{{item.dosage}}</span>
+              <span class="p-column-title">Dosage</span>
+              {{item.dosage}}
             </td>
             <td>
-              <span class="p-column-title">Representative</span>
-              <span class="image-text">{{item.unit}}</span>
+              <span class="p-column-title">Unit</span>
+              {{item.unit}}
             </td>
-            <!-- <td>
-              <span class="p-column-title">Status</span>
-              <span [class]="'customer-badge status-' + customer.status">{{item.name}}</span>
-            </td> -->
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
