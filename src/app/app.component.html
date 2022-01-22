@@ -89,24 +89,40 @@
 
 <div class="card">
     <h2>Номенклатура лікарських засобів</h2>
-    <p-table #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
+    <p-table [columns]="selectedColumns" #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
         [rows]="3" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
     <ng-template pTemplate="caption">
-      <div class="flex">
+      <!-- <div class="flex">
+        <p>Завантажити</p>
         <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"
           pTooltip="XLS" tooltipPosition="bottom"></button>
-      </div>
+      </div> -->
     </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="num">№ позиції номенклатури<p-sortIcon field="num"></p-sortIcon></th>
+    <ng-template pTemplate="caption">
+            <div class="flex">
+              <p>Завантажити</p>
+              <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"
+                pTooltip="XLS" tooltipPosition="bottom"></button>
+            </div>
+      <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+        selectedItemsLabel="{0} columns selected" [style]="{minWidth: '200px'}" placeholder="Виберіть тип">
+      </p-multiSelect>
+    </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <!-- <tr>
+                <th pSortableColumn="num">№ Номенклатури<p-sortIcon field="num"></p-sortIcon></th>
                 <th pSortableColumn="mnn_id">Ідентифікатор МНН<p-sortIcon field="mnn_id"></p-sortIcon>
                 </th>
                 <th pSortableColumn="name">МНН<p-sortIcon field="name"></p-sortIcon></th>
                 <th pSortableColumn="release_form">Форма випуску<p-sortIcon field="release_form"></p-sortIcon></th>
                 <th pSortableColumn="dosage">Дозування<p-sortIcon field="dosage"></p-sortIcon></th>
                 <th pSortableColumn="unit">Одиниці виміру<p-sortIcon field="unit"></p-sortIcon></th>
-            </tr>
+            </tr> -->
+        <tr>
+          <th *ngFor="let col of columns" pSortableColumn={{col.field}}>
+            {{col.header}}<p-sortIcon field={{col.field}}></p-sortIcon>
+          </th>
+        </tr>
             <tr>
                 <th>
                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'num', 'contains')"
@@ -134,9 +150,12 @@
                   </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-item>
+        <ng-template pTemplate="body" let-item let-columns="columns">
           <tr [pSelectableRow]="item">
-            <td>
+                        <td *ngFor="let col of columns">
+                          {{item[col.field]}}
+                        </td>
+            <!-- <td>
               <span class="p-column-title">Num</span>
               {{item.num}}
             </td>
@@ -159,7 +178,7 @@
             <td>
               <span class="p-column-title">Unit</span>
               {{item.unit}}
-            </td>
+            </td> -->
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
