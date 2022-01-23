@@ -8,7 +8,7 @@ import * as FileSaver from 'file-saver';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'my-project-angular-table';
+  title = 'angular-table';
   items = [];
   cols: any = [];
 

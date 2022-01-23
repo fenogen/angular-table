@@ -4,3 +4,15 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica,
     Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
 }
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  margin: 0px;
+  margin-right: 15px;
+  padding: 0px;
+}

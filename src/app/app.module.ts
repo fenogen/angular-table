@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 
 
 // Added
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
@@ -38,7 +36,6 @@ import {InputTextModule} from 'primeng/inputtext';
     DropdownModule,
     ProgressBarModule,
     InputTextModule,
-    // ScrollPanelModule,
     FormsModule,
     BrowserAnimationsModule
   ],

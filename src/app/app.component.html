@@ -1,190 +1,129 @@
-<!-- <style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link),
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-</style> -->
-
-<!-- <p-table [value]="items">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>№ позиції номенклатури</th>
-      <th>Ідентифікатор МНН</th>
-      <th>МНН</th>
-      <th>Форма випуску</th>
-      <th>Дозування</th>
-      <th>Одиниці виміру</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-item>
-    <tr>
-      <td>{{ item.num }}</td>
-      <td>{{ item.mnn_id }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.release_form }}</td>
-      <td>{{ item.dosage }}</td>
-      <td>{{ item.unit}}</td>
-    </tr>
-  </ng-template>
-</p-table> -->
-
 <div class="card">
-    <h2>Номенклатура лікарських засобів</h2>
-    <p-table [columns]="selectedColumns" #dt1 [value]="items" selectionMode="single" dataKey="id" styleClass="p-datatable-items"
-        [rows]="3" [paginator]="true" stateStorage="local" stateKey="statedemo-local">
+  <h2>Номенклатура лікарських засобів</h2>
+  <p-table
+    [columns]="selectedColumns"
+    #dt1
+    [value]="items"
+    selectionMode="single"
+    dataKey="id"
+    styleClass="p-datatable-items"
+    [rows]="3"
+    [paginator]="true"
+    stateStorage="local"
+    stateKey="statedemo-local"
+  >
     <ng-template pTemplate="caption">
-      <!-- <div class="flex">
-        <p>Завантажити</p>
-        <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"
-          pTooltip="XLS" tooltipPosition="bottom"></button>
-      </div> -->
-    </ng-template>
-    <ng-template pTemplate="caption">
-            <div class="flex">
-              <p>Завантажити</p>
-              <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"
-                pTooltip="XLS" tooltipPosition="bottom"></button>
-            </div>
-      <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
-        selectedItemsLabel="{0} columns selected" [style]="{minWidth: '200px'}" placeholder="Виберіть тип">
-      </p-multiSelect>
-    </ng-template>
-        <ng-template pTemplate="header" let-columns>
-            <!-- <tr>
-                <th pSortableColumn="num">№ Номенклатури<p-sortIcon field="num"></p-sortIcon></th>
-                <th pSortableColumn="mnn_id">Ідентифікатор МНН<p-sortIcon field="mnn_id"></p-sortIcon>
-                </th>
-                <th pSortableColumn="name">МНН<p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="release_form">Форма випуску<p-sortIcon field="release_form"></p-sortIcon></th>
-                <th pSortableColumn="dosage">Дозування<p-sortIcon field="dosage"></p-sortIcon></th>
-                <th pSortableColumn="unit">Одиниці виміру<p-sortIcon field="unit"></p-sortIcon></th>
-            </tr> -->
-        <tr>
-          <th *ngFor="let col of columns" pSortableColumn={{col.field}}>
-            {{col.header}}<p-sortIcon field={{col.field}}></p-sortIcon>
-          </th>
-        </tr>
-            <tr>
-                <th>
-                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'num', 'contains')"
-                    [value]="$any(dt1.filters['num'])?.value" placeholder="Пошук за номенклатурою" class="p-column-filter">
-                </th>
-                <th>
-                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'mnn_id', 'contains')"
-                    [value]="$any(dt1.filters['mnn_id'])?.value" placeholder="Пошук за ідентифікатором" class="p-column-filter">
-                </th>
-                <th>
-                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'name', 'contains')"
-                    [value]="$any(dt1.filters['name'])?.value" placeholder="Пошук за МНН" class="p-column-filter">
-                </th>
-                <th>
-                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'release_form', 'contains')"
-                    [value]="$any(dt1.filters['release_form'])?.value" placeholder="Пошук за формою випуска" class="p-column-filter">
-                </th>
-                <th>
-                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'dosage', 'contains')"
-                    [value]="$any(dt1.filters['dosage'])?.value" placeholder="Пошук за дозуванням" class="p-column-filter">
-                </th>
-                <th>
-                  <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'unit', 'contains')"
-                    [value]="$any(dt1.filters['unit'])?.value" placeholder="Пошук за од.виміру" class="p-column-filter">
-                  </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item let-columns="columns">
-          <tr [pSelectableRow]="item">
-                        <td *ngFor="let col of columns">
-                          {{item[col.field]}}
-                        </td>
-            <!-- <td>
-              <span class="p-column-title">Num</span>
-              {{item.num}}
-            </td>
-            <td>
-              <span class="p-column-title">Id</span>
-              {{item.mnn_id}}
-            </td>
-            <td>
-              <span class="p-column-title">Name</span>
-             {{item.name}}
-            </td>
-            <td>
-            <span class="p-column-title">Form</span>
-            {{item.release_form}}
-            </td>
-            <td>
-              <span class="p-column-title">Dosage</span>
-              {{item.dosage}}
-            </td>
-            <td>
-              <span class="p-column-title">Unit</span>
-              {{item.unit}}
-            </td> -->
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="4">No customers found.</td>
-          </tr>
-        </ng-template>
-        </p-table>
+      <div class="box">
+        <p-multiSelect
+          [options]="cols"
+          [(ngModel)]="selectedColumns"
+          optionLabel="header"
+          selectedItemsLabel="{0} columns selected"
+          [style]="{ minWidth: '200px' }"
+          placeholder="Виберіть тип"
+        >
+        </p-multiSelect>
+        <div class="box">
+          <p class="text">Завантажити</p>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel()"
+            class="p-button-success mr-2"
+            pTooltip="XLS"
+            tooltipPosition="bottom"
+          ></button>
         </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filter($any($event.target)?.value, 'num', 'contains')"
+            [value]="$any(dt1.filters['num'])?.value"
+            placeholder="Пошук номенклатура"
+            class="p-column-filter"
+          />
+        </th>
+        <th>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              dt1.filter($any($event.target)?.value, 'mnn_id', 'contains')
+            "
+            [value]="$any(dt1.filters['mnn_id'])?.value"
+            placeholder="Пошук ідентифікатор"
+            class="p-column-filter"
+          />
+        </th>
+        <th>
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filter($any($event.target)?.value, 'name', 'contains')"
+            [value]="$any(dt1.filters['name'])?.value"
+            placeholder="Пошук за МНН"
+            class="p-column-filter"
+          />
+        </th>
+        <th>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              dt1.filter($any($event.target)?.value, 'release_form', 'contains')
+            "
+            [value]="$any(dt1.filters['release_form'])?.value"
+            placeholder="Пошук за формою"
+            class="p-column-filter"
+          />
+        </th>
+        <th>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              dt1.filter($any($event.target)?.value, 'dosage', 'contains')
+            "
+            [value]="$any(dt1.filters['dosage'])?.value"
+            placeholder="Пошук дозування"
+            class="p-column-filter"
+          />
+        </th>
+        <th>
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filter($any($event.target)?.value, 'unit', 'contains')"
+            [value]="$any(dt1.filters['unit'])?.value"
+            placeholder="Пошук од.виміру"
+            class="p-column-filter"
+          />
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" pSortableColumn="{{ col.field }}">
+          {{ col.header }}<p-sortIcon field="{{ col.field }}"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns">
+      <tr [pSelectableRow]="item">
+        <td *ngFor="let col of columns">
+          {{ item[col.field] }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No customers found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
